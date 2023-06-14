@@ -4,48 +4,50 @@
 <!DOCTYPE html>
 <html>
 <head runat="server">
-    <title><asp:ContentPlaceHolder ID="Title" runat="server" /></title>
+    <title>
+        <asp:ContentPlaceHolder ID="Title" runat="server" />
+    </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <style>
         /* Sidebar styles */
         #sidebar {
-            width: 250px;
+            width: 220px;
             position: fixed;
             top: 0;
             left: 0;
             height: 100%;
             background-color: #333;
             color: #fff;
-            padding-top: 50px;
+            padding-top: 0px;
             transition: all 0.3s;
         }
 
-        #sidebar .sidebar-header {
-            padding: 20px;
-        }
+            #sidebar .sidebar-header {
+                padding: 0px;
+            }
 
-        #sidebar ul.components {
-            padding: 0;
-        }
+            #sidebar ul.components {
+                padding: 20px;
+            }
 
-        #sidebar ul li {
-            list-style: none;
-        }
+            #sidebar ul li {
+                list-style: none;
+            }
 
-        #sidebar ul li a {
-            padding: 10px;
-            display: block;
-            color: #fff;
-        }
+                #sidebar ul li a {
+                    padding: 10px;
+                    display: block;
+                    color: #fff;
+                }
 
-        #sidebar ul li a:hover {
-            background-color: #555;
-            color: #fff;
-        }
+                    #sidebar ul li a:hover {
+                        background-color: #555;
+                        color: #fff;
+                    }
 
-        #sidebar.active {
-            margin-left: -250px;
-        }
+            #sidebar.active {
+                margin-left: -250px;
+            }
 
         /* Content styles */
         #content {
@@ -61,7 +63,9 @@
         <!-- Sidebar -->
         <nav id="sidebar">
             <div class="sidebar-header">
-              <h2>Stock Tracker</h2>
+                <asp:Image ID="imgProduct" runat="server" ImageUrl="https://alzamanexchange.com/assets/images/logo-footer.png" AlternateText="Product Image"/>
+
+                <h2>Stock Tracker</h2>
             </div>
             <ul class="list-unstyled components">
                 <li>
@@ -76,19 +80,30 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#">About</a>
+                    <a href="#adminSubmenu" data-toggle="collapse" aria-expanded="false">Admin</a>
+                    <ul class="collapse list-unstyled" id="adminSubmenu">
+                        <li>
+                            <a href="../Admin/Branch.aspx">Branches</a>
+                        </li>
+                        <li>
+                            <a href="../Admin/Role.aspx">Role</a>
+                        </li>
+                        <li>
+                            <a href="../Admin/User.aspx">User</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Stock</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="Product.aspx">Products</a>
+                            <a href="../Pages/Product.aspx">Products</a>
                         </li>
                         <li>
-                            <a href="ProductRequest.aspx">Request</a>
+                            <a href="../Pages/ProductRequest.aspx">Request</a>
                         </li>
                         <li>
-                            <a href="ProductApproval.aspx">Approve</a>
+                            <a href="../Pages/ProductApproval.aspx">Approve</a>
                         </li>
                     </ul>
                 </li>

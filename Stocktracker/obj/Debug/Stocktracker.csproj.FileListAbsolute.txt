@@ -111,8 +111,8 @@ D:\Projects\Stocktracker\Stocktracker\bin\roslyn\VBCSCompiler.exe
 D:\Projects\Stocktracker\Stocktracker\bin\roslyn\VBCSCompiler.exe.config
 D:\Projects\Stocktracker\Stocktracker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 D:\Projects\Stocktracker\Stocktracker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Projects\Stocktracker\Stocktracker\obj\Debug\Stocktracker.csproj.AssemblyReference.cache
 D:\Projects\Stocktracker\Stocktracker\obj\Debug\Stocktracker.csproj.CoreCompileInputs.cache
 D:\Projects\Stocktracker\Stocktracker\obj\Debug\Stocktracker.csproj.CopyComplete
 D:\Projects\Stocktracker\Stocktracker\obj\Debug\Stocktracker.dll
 D:\Projects\Stocktracker\Stocktracker\obj\Debug\Stocktracker.pdb
+D:\Projects\Stocktracker\Stocktracker\obj\Debug\Stocktracker.csproj.AssemblyReference.cache

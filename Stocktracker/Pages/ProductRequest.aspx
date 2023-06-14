@@ -14,9 +14,9 @@
         <asp:TextBox ID="txtQuantity" runat="server" onkeypress="return isNumberKey(event)" class="form-control"></asp:TextBox>
 
     </div>
-    <asp:Button ID="btnRequest" OnClick="btnRequest_Click" class="btn btn-primary" runat="server" Text="Request" />
-
-
+    <div class="table-responsive mt-4 pt-2">
+        <asp:Button ID="btnRequest" OnClick="btnRequest_Click" class="btn btn-success" runat="server" Text="Request" />
+    </div>
     <script type="text/javascript">
         function isNumberKey(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode;
