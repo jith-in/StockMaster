@@ -1,0 +1,116 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="StockMaster.master.cs" Inherits="Stocktracker_test.StockMaster" %>
+
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title><asp:ContentPlaceHolder ID="Title" runat="server" /></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <style>
+        /* Sidebar styles */
+        #sidebar {
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background-color: #333;
+            color: #fff;
+            padding-top: 50px;
+            transition: all 0.3s;
+        }
+
+        #sidebar .sidebar-header {
+            padding: 20px;
+        }
+
+        #sidebar ul.components {
+            padding: 0;
+        }
+
+        #sidebar ul li {
+            list-style: none;
+        }
+
+        #sidebar ul li a {
+            padding: 10px;
+            display: block;
+            color: #fff;
+        }
+
+        #sidebar ul li a:hover {
+            background-color: #555;
+            color: #fff;
+        }
+
+        #sidebar.active {
+            margin-left: -250px;
+        }
+
+        /* Content styles */
+        #content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+    </style>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server" />
+</head>
+<body>
+    <form runat="server">
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+              <h2>Stock Tracker</h2>
+            </div>
+            <ul class="list-unstyled components">
+                <li>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="#">Submenu 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Submenu 2</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Pages</a>
+                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                        <li>
+                            <a href="Product.aspx">Products</a>
+                        </li>
+                        <li>
+                            <a href="ProductRequest.aspx">Request</a>
+                        </li>
+                        <li>
+                            <a href="ProductApproval.aspx">Approve</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content -->
+        <div id="content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#sidebarCollapse').on('click', function () {
+                    $('#sidebar').toggleClass('active');
+                    $('#content').toggleClass('active');
+                });
+            });
+        </script>
+    </form>
+</body>
+</html>
+
