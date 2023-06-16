@@ -31,13 +31,15 @@ namespace Stocktracker.Pages
                 connection.Open();
 
                 // Insert the requested product into the database
-                string query = "INSERT INTO ProductRequest (ProductID,Quantity, RequestedBy) VALUES (@ProductId,@Quantity, @RequestedBy)";
+                string query = "INSERT INTO ProductRequest (ProductID, Quantity, RequestedBy, RequestDate) VALUES (@ProductId, @Quantity, @RequestedBy, @RequestDate)";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@ProductId", productId);
                 command.Parameters.AddWithValue("@Quantity", Quantity);
                 command.Parameters.AddWithValue("@RequestedBy", User.Identity.Name); // Assuming you're using authentication and storing the username
+                command.Parameters.AddWithValue("@RequestDate", DateTime.Now); // Add the RequestDate parameter with the current date and time
 
                 command.ExecuteNonQuery();
+
             }
 
             string message = "Product requested successfully!";

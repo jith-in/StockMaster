@@ -71,12 +71,12 @@
                 <li>
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
+                        <%--<li>
                             <a href="#">Submenu 1</a>
                         </li>
                         <li>
                             <a href="#">Submenu 2</a>
-                        </li>
+                        </li>--%>
                     </ul>
                 </li>
                 <li>

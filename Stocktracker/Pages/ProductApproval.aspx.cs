@@ -38,12 +38,18 @@ namespace Stocktracker.Pages
                     // Use the quantityValue as needed
                 }
                 // Get the requested product ID from the gridview
-                string RequestID = row.Cells[0].Text; // Assuming the product ID is in the first cell
-
+                string RequestID = row.Cells[0].Text; // Assuming the requestID is in the first cell
+                int productID = Convert.ToInt32(dgvProductApproval.DataKeys[row.RowIndex].Value);
+                var msg = DeductProductQuantity(productID, Convert.ToInt32(Quantity));
+                if(msg != "Success")
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "alert", "alert('" + msg + "');", true);
+                    return;
+                }
                 // TODO: Approve the product and perform any necessary actions
                 // You can add your own logic here, such as updating the product status, notifying the requester, etc.
 
-                // Assuming you have a connection string to your SQL database
+
 
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -79,7 +85,7 @@ namespace Stocktracker.Pages
                 connection.Open();
 
                 // Retrieve data from the ProductRequest table
-                string query = @"SELECT RequestID,Products.ProductName , ProductRequest.Quantity, RequestedBy, RequestDate,ApprovedStatus FROM ProductRequest 
+                string query = @"SELECT RequestID,Products.ProductName ,Products.ProductID, ProductRequest.Quantity, RequestedBy, RequestDate,ApprovedStatus FROM ProductRequest 
                                 join Products on ProductRequest.ProductID = Products.ProductID
                                 where ApprovedStatus is NULL";
                 SqlCommand command = new SqlCommand(query, connection);
@@ -90,6 +96,45 @@ namespace Stocktracker.Pages
                 // Bind the DataTable to the GridView
                 dgvProductApproval.DataSource = dataTable;
                 dgvProductApproval.DataBind();
+            }
+        }
+
+        public string DeductProductQuantity(int productId, int quantityRequested)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Create a command object for the stored procedure
+                    using (SqlCommand command = new SqlCommand("DeductProductQuantity", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        // Add input parameters to the stored procedure
+                        command.Parameters.AddWithValue("@ProductID", productId);
+                        command.Parameters.AddWithValue("@QuantityRequested", quantityRequested);
+
+                        // Add an output parameter to capture the error message
+                        SqlParameter errorMessageParam = new SqlParameter("@ErrorMessage", SqlDbType.VarChar, 100);
+                        errorMessageParam.Direction = ParameterDirection.Output;
+                        command.Parameters.Add(errorMessageParam);
+
+                        // Execute the stored procedure
+                        command.ExecuteNonQuery();
+
+                        // Retrieve the error message from the output parameter
+                        string errorMessage = errorMessageParam.Value.ToString();
+                        return errorMessage;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that occur during the database operation
+                Console.WriteLine("An error occurred: " + ex.Message);
+                return null;
             }
         }
 

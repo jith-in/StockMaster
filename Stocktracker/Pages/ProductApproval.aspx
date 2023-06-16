@@ -8,9 +8,10 @@
 
     <div class="container">
         <div class="table-responsive mt-4 pt-2">
-            <asp:GridView ID="dgvProductApproval" runat="server" CssClass="table table-striped table-bordered" AutoGenerateColumns="False" OnRowCommand="dgvProductApproval_RowCommand">
+            <asp:GridView ID="dgvProductApproval" DataKeyNames="ProductID" runat="server" CssClass="table table-striped table-bordered" AutoGenerateColumns="False" OnRowCommand="dgvProductApproval_RowCommand">
                 <Columns>
                     <asp:BoundField DataField="RequestID" HeaderText="Request ID" />
+
                     <asp:BoundField DataField="ProductName" HeaderText="Product" />
                     <asp:TemplateField HeaderText="Quantity">
                         <ItemTemplate>
@@ -21,6 +22,9 @@
                     <asp:BoundField DataField="RequestDate" HeaderText="Request Date" DataFormatString="{0:yyyy-MM-dd}" />
                     <asp:ButtonField ButtonType="Button" Text="Approve" CommandName="Approve" />
                 </Columns>
+                <%--<Columns>
+                    <asp:HiddenField ID="ProductID" runat="server" Value='<%# Eval("ProductID") %>' />
+                </Columns>--%>
             </asp:GridView>
         </div>
     </div>

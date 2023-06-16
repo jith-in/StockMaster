@@ -4,6 +4,7 @@
     Create User
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <h1 class="text-center">Manage Users</h1>
     <div class="form-outline w-50">
         <label for="txtName">Name:</label>
         <asp:TextBox ID="txtName" class="form-control" runat="server"></asp:TextBox>
