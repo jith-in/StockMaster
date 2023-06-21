@@ -11,9 +11,12 @@ namespace Stocktracker.Admin
     {
         private string connectionString = ConfigurationManager.ConnectionStrings["stocktracker"].ConnectionString;
         public int UserID { get; set; }
+        public string Username { get; set; } // Added username field
         public string Name { get; set; }
         public int RoleID { get; set; }
         public int BranchID { get; set; }
+        public string Password { get; set; } // New password field
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -26,20 +29,24 @@ namespace Stocktracker.Admin
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-          
+            string username = txtUsername.Text.Trim(); // Get the username value
             string name = txtName.Text.Trim();
+            string password = txtPassword.Text.Trim(); // Get the password value
             int roleId = Convert.ToInt32(ddlRole.SelectedValue);
             int branchId = Convert.ToInt32(ddlBranch.SelectedValue);
-            if ((!string.IsNullOrWhiteSpace(name)) && ddlRole.SelectedValue != "0" && ddlBranch.SelectedValue != "0")
+
+            if ((!string.IsNullOrWhiteSpace(username)) && (!string.IsNullOrWhiteSpace(name)) && (!string.IsNullOrWhiteSpace(password)) && ddlRole.SelectedValue != "0" && ddlBranch.SelectedValue != "0")
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string query = "INSERT INTO Users (Name, RoleID, BranchID) VALUES (@Name, @RoleID, @BranchID)";
+                    string query = "INSERT INTO Users (Username, Name, RoleID, BranchID, Password) VALUES (@Username, @Name, @RoleID, @BranchID, @Password)";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
+                        command.Parameters.AddWithValue("@Username", username);
                         command.Parameters.AddWithValue("@Name", name);
                         command.Parameters.AddWithValue("@RoleID", roleId);
                         command.Parameters.AddWithValue("@BranchID", branchId);
+                        command.Parameters.AddWithValue("@Password", password);
                         connection.Open();
                         command.ExecuteNonQuery();
                         connection.Close();
@@ -56,6 +63,7 @@ namespace Stocktracker.Admin
                 return;
             }
         }
+
 
         protected void gridViewUsers_RowEditing(object sender, GridViewEditEventArgs e)
         {
@@ -436,6 +444,8 @@ namespace Stocktracker.Admin
         private void ClearForm()
         {
             txtName.Text = string.Empty;
+            txtPassword.Text = string.Empty;
+            txtUsername.Text = string.Empty;
             ddlRole.SelectedIndex = 0;
             ddlBranch.SelectedIndex = 0;
         }

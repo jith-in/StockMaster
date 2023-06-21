@@ -49,7 +49,16 @@ namespace Stocktracker.Pages
                 // TODO: Approve the product and perform any necessary actions
                 // You can add your own logic here, such as updating the product status, notifying the requester, etc.
 
+                string user = string.Empty;
+                if (Session["Name"] != null)
+                {
 
+                    user = Session["Name"].ToString();
+                }
+                else
+                {
+                    user = "Admin";
+                }
 
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -61,7 +70,7 @@ namespace Stocktracker.Pages
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@RequestID", RequestID);
                     command.Parameters.AddWithValue("@Quantity", Quantity);
-                    command.Parameters.AddWithValue("@ApprovedBy", User.Identity.Name); // Assuming you're using authentication and storing the username
+                    command.Parameters.AddWithValue("@ApprovedBy", user); 
                     command.Parameters.AddWithValue("@ApprovedDate", DateTime.Now);
 
                     command.ExecuteNonQuery();

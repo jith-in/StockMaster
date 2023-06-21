@@ -17,6 +17,14 @@
         <label for="ddlBranch">Branch:</label>
         <asp:DropDownList ID="ddlBranch" class="form-control" runat="server"></asp:DropDownList>
     </div>
+    <div class="form-outline w-50">
+        <label for="txtUsername">User Name:</label>
+        <asp:TextBox ID="txtUsername" class="form-control" runat="server"></asp:TextBox>
+    </div>
+    <div class="form-outline w-50">
+        <label for="txtPassword">Password:</label>
+        <asp:TextBox ID="txtPassword" class="form-control" runat="server" TextMode="Password"></asp:TextBox>
+    </div>
     <div class="table-responsive mt-6 pt-2">
         <asp:Button ID="btnSave" runat="server" Text="Save" OnClick="btnSave_Click" class="btn btn-success" />
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" class="btn btn-secondary" />

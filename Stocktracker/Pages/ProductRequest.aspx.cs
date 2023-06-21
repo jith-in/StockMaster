@@ -26,6 +26,16 @@ namespace Stocktracker.Pages
 
             string Quantity = txtQuantity.Text.Trim();
 
+            string user = string.Empty;
+            if (Session["Name"] != null)
+            {
+
+                user = Session["Name"].ToString();
+            }
+            else
+            {
+                user = "Admin";
+            }
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -35,7 +45,7 @@ namespace Stocktracker.Pages
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@ProductId", productId);
                 command.Parameters.AddWithValue("@Quantity", Quantity);
-                command.Parameters.AddWithValue("@RequestedBy", User.Identity.Name); // Assuming you're using authentication and storing the username
+                command.Parameters.AddWithValue("@RequestedBy", user); // Assuming you're using authentication and storing the username
                 command.Parameters.AddWithValue("@RequestDate", DateTime.Now); // Add the RequestDate parameter with the current date and time
 
                 command.ExecuteNonQuery();

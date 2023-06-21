@@ -87,6 +87,7 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="Login\Login.aspx" />
     <Content Include="Pages\Product.aspx" />
     <Content Include="Pages\ProductApproval.aspx" />
     <Content Include="Pages\ProductRequest.aspx" />
@@ -127,6 +128,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Product.aspx.cs">
       <DependentUpon>Product.aspx</DependentUpon>
